@@ -1,0 +1,57 @@
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/nav') %>
+   <main class="max-w-3xl mx-auto my-8 p-8 bg-white rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center"> <%= editing ? "Edit" : "Register"  %>   Your Home on AirBnB</h1>
+
+  <form action="/host/<%= editing ? "edit-home" : "add-home" %>" method="POST" enctype="multipart/form-data" class="max-w-md mx-auto">
+    <input type="hidden" name="id" value="<%= editing ? home._id : "" %>">
+    <input
+      type="text"
+      name="houseName"
+      value="<%= editing ? home.houseName : "" %>"
+      placeholder="Enter your House Name"
+      class="w-full p-3 mb-4 border border-gray-300 rounded-md text-base focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-300"
+    />
+
+    <input
+      type="text"
+      name="price"
+      value="<%= editing ? home.price : "" %>"
+      placeholder="Price Per Night"
+      class="w-full p-3 mb-4 border border-gray-300 rounded-md text-base focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-300"
+    />
+
+    <input
+      type="text"
+      name="location"
+      value="<%= editing ? home.location : "" %>"
+      placeholder="Enter your Location"
+      class="w-full p-3 mb-4 border border-gray-300 rounded-md text-base focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-300"
+    />
+
+    <input
+      type="text"
+      name="rating"
+      value="<%= editing ? home.rating : "" %>"
+      placeholder="Rating"
+      class="w-full p-3 mb-4 border border-gray-300 rounded-md text-base focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-300"
+    />
+
+    <input
+      type="file"
+      name="photo"
+      accept="image/jpg, image/jpeg , image/png"
+      class="w-full p-3 mb-6 border border-gray-300 rounded-md text-base focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-300"
+    />
+
+    <input
+      type="submit"
+      value=" <%= editing ? "Update Home" : "Add Home" %> "
+      class="w-full bg-red-500 text-white py-3 rounded-md text-base font-semibold cursor-pointer transition-colors duration-300 hover:bg-red-600"
+    />
+  </form>
+</main>
+</body>
+</html>

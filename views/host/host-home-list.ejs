@@ -1,0 +1,48 @@
+<%- include('../partials/head.ejs') %>
+
+  <body class="bg-gray-100 font-sans m-0 p-0">
+    <%- include('../partials/nav.ejs') %>
+
+      <main class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-10 my-8 text-center">
+        <h2 class="text-3xl font-bold text-red-500 mb-6">hey host! here are your homes</h2>
+
+        <div class="flex flex-wrap justify-center gap-6">
+          <% registeredHomes.forEach(home=> { %>
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xs transition-shadow duration-300 hover:shadow-lg">
+              <img src="<%= home.photo %>" alt="<%= home.houseName %>" class="w-full h-52 object-cover" />
+              <div class="p-4 text-left">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                  <%= home.houseName %>
+                </h3>
+                <p class="text-gray-500 mb-3">
+                  <%= home.location %>
+                </p>
+
+                <div class="flex justify-between items-center">
+                  <span class="text-lg font-bold text-red-500">Rs <%= home.price %></span>
+                  <div class="flex items-center">
+                    <span class="text-yellow-400 mr-1">⭐⭐⭐⭐⭐</span>
+                    <span class="text-gray-700 text-sm">
+                      <%= home.rating %>
+                    </span>
+                  </div>
+                </div>
+                <a href="/host/edit-home/<%= home._id %>?editing=true"
+                  class="mt-6 w-full text-center block bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition-colors duration-300">
+                  Edit
+                </a>
+                <form action="/host/delete-home/<%= home._id %>" method="POST">
+                  <button type="submit"
+                    class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors duration-300">
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+      </main>
+  </body>
+
+  </html>
